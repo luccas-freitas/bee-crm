@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <th:block th:replace="fragments/head"></th:block>
+</head>
+<body>
+<div class="container-fluid text-center">
+    <div class="col-12 mt-5 mb-2">
+        <img class="img-fluid rounded" th:src="@{assets/images/logo.jpg}"/>
+    </div>
+    <form th:action="@{/login}" method="post" style="max-width: 350px; margin: 0 auto;" class="col-12">
+
+        <div th:if="${param.error}">
+            <p class="text-danger">[[${session.SPRING_SECURITY_LAST_EXCEPTION.message}]]</p>
+        </div>
+
+        <div th:if="${param.logout}">
+            <p class="text-warning">You have been logged out.</p>
+        </div>
+
+        <div class="border border-secondary p-3 rounded">
+            <p>Acesso ao Bee-Collect Manager</p>
+            <p>
+                <input type="text" name="username" class="form-control" placeholder="Usuário" required autofocus/>
+            </p>
+            <p>
+                <input type="password" name="password" class="form-control" placeholder="Senha" required/>
+            </p>
+            <p>
+                <input type="checkbox" name="remember-me"/>&nbsp;Lembrar-me
+            </p>
+            <p>
+                <input type="submit" value="Login" class="btn btn-primary"/>
+            </p>
+        </div>
+    </form>
+</div>
+</body>
+</html>

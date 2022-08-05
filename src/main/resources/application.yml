@@ -4,11 +4,15 @@ logging:
 ---
 spring:
   datasource:
-    url: jdbc:postgresql://ec2-44-206-197-71.compute-1.amazonaws.com:5432/db9emalkfqulba
-    username: xdjsaiuieyoiie
-    password: a3fbf407322dfcb87ca4f34fa11b7ea7060768e154620c9d09f6a2cf2cee5569
+    url: jdbc:postgresql://ec2-44-205-112-253.compute-1.amazonaws.com:5432/d4m2js3jrkv2n4
+    username: ywpncblzlhcavo
+    password: d25a9a819188d51db7fa09aa8ad1c8c559e75afa572209966dca12a8ffddfd8f
     driverClassName: org.postgresql.Driver
   jpa:
     database: POSTGRESQL
     hibernate:
       ddl-auto: update
+  security:
+    user:
+      name: breniky
+      password: bee_collect@2022
