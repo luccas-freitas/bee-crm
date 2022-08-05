@@ -16,7 +16,6 @@ public class SecurityConfiguration {
                 .and()
                 .formLogin()
                     .loginPage("/login")
-                    //.usernameParameter("email")
                     .defaultSuccessUrl("/")
                     .permitAll()
                 .and()

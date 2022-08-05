@@ -15,6 +15,6 @@ public class BaseModel {
 
 
     public BaseModel() {
-        updatedAt = LocalDateTime.now();
+        createdAt = LocalDateTime.now();
     }
 }

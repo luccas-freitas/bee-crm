@@ -7,42 +7,13 @@
 <th:block th:replace="fragments/navbar"></th:block>
 <div class="container">
 
-    <div class="row">
-        <div class="col-md-4 mt-5">
-            <form method="post" th:object="${birthplace}">
-
-                <div class="form-group">
-                    <label for="birthplace">Place of birth</label>
-                    <select id="birthplace" class="form-control select2-single" th:field="*{state}">
-                        <option value="">Search state</option>
-                    </select>
-                </div>
-
-                <button class="btn btn-primary" type="submit">Submit form</button>
-            </form>
-        </div>
+    <div class="row mt-5">
+        <h1>Hello from Ibipa-city!</h1>
     </div>
 
 </div>
 
 <th:block th:replace="fragments/footer"></th:block>
-
-<script>
-    $("#birthplace").select2({
-        theme: "bootstrap4",
-        ajax: {
-            url: '/states',
-            dataType: 'json',
-            delay: 250,
-            processResults: function (response) {
-                return {
-                    results: response
-                };
-            },
-            cache: true
-        }
-    });
-</script>
 
 </body>
 </html>
