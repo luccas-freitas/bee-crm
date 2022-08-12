@@ -2,18 +2,104 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <th:block th:replace="fragments/head"></th:block>
+    <link th:rel="stylesheet" th:href="@{assets/datatable/datatable.css}"/>
 </head>
 <body>
 <th:block th:replace="fragments/navbar"></th:block>
 <div class="container">
-
-    <div class="row mt-5">
-        <h1>Hello from Ibipa-city!</h1>
+    <div class="row">
+        <div class="col-lg-10 mt-5 mb-5">
+            <h3>Datatable using list of Objects in data parameter</h3>
+            <table id="example" class="table table-bordered table-responsive" style="width: 100%">
+                <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>description</th>
+                    <th>quantity</th>
+                    <th>Start date</th>
+                    <th>updated_at</th>
+                </tr>
+                </thead>
+                <tfoot>
+                <tr>
+                    <th>name</th>
+                    <th>description</th>
+                    <th>quantity</th>
+                    <th>unity</th>
+                    <th>updatedAt</th>
+                </tr>
+                </tfoot>
+            </table>
+        </div>
     </div>
 
+
+    <div class="row">
+        <div class="col-lg-10 mt-5 mb-5">
+            <h3>Datatable using list of Arrays in data parameter</h3>
+            <table id="exampleArray" class="table table-bordered table-responsive" style="width: 100%">
+                <thead>
+                <tr>
+                    <th style="width:20%">Name</th>
+                    <th style="width:20%">description</th>
+                    <th style="width:20%">quantity</th>
+                    <th style="width:20%">Start date</th>
+                    <th style="width:20%">updatedAt</th>
+                </tr>
+                </thead>
+                <tfoot>
+                <tr>
+                    <th>Name</th>
+                    <th>description</th>
+                    <th>quantity</th>
+                    <th>Start date</th>
+                    <th>updated_at</th>
+                </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
 </div>
 
+
 <th:block th:replace="fragments/footer"></th:block>
+<script th:src="@{assets/datatable/datatable.js}"></script>
+<script>
+    $('#example').DataTable({
+        "processing": true,
+        "serverSide": true,
+        "ajax": {
+            "url": "api/product",
+            "type": "POST",
+            "dataType": "json",
+            "contentType": "application/json",
+            "data": function (d) {
+                return JSON.stringify(d);
+            }
+        },
+        "columns": [
+            {"data": "name", "width": "20%"},
+            {"data": "description","width": "20%"},
+            {"data": "quantity", "width": "20%"},
+            {"data": "unity", "width": "20%"},
+            {"data": "updatedAt", "width": "20%"}
+        ]
+    });
+
+    $('#exampleArray').DataTable({
+        "processing": true,
+        "serverSide": true,
+        "ajax": {
+            "url": "/api/product/array",
+            "type": "POST",
+            "dataType": "json",
+            "contentType": "application/json",
+            "data": function (d) {
+                return JSON.stringify(d);
+            }
+        }
+    });
+</script>
 
 </body>
 </html>
