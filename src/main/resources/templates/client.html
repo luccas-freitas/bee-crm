@@ -12,10 +12,10 @@
             <table id="example" class="table table-bordered table-responsive" style="width: 100%">
                 <thead>
                 <tr>
-                    <th>Produto</th>
-                    <th>Descrição</th>
-                    <th>Quantidade</th>
-                    <th>Unidade</th>
+                    <th>Cliente</th>
+                    <th>CPF</th>
+                    <th>Endereço</th>
+                    <th>Telefone</th>
                     <th>Última atualização</th>
                 </tr>
                 </thead>
@@ -31,7 +31,7 @@
     $('#example').DataTable({
         "serverSide": true,
         "ajax": {
-            "url": "api/product",
+            "url": "api/client",
             "type": "POST",
             "dataType": "json",
             "contentType": "application/json",
@@ -65,9 +65,9 @@
         },
         "columns": [
             {"data": "name", "width": "20%"},
-            {"data": "description","width": "20%"},
-            {"data": "quantity", "width": "20%"},
-            {"data": "unity", "width": "20%"},
+            {"data": "document","width": "20%"},
+            {"data": "address", "width": "20%"},
+            {"data": "phone", "width": "20%"},
             {"data": "updatedAt", "width": "20%"}
         ]
     });

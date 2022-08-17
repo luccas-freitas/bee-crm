@@ -7,11 +7,14 @@ import javax.persistence.*;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Entity
-public class Product extends BaseModel {
+public class Product extends BaseModel implements Serializable {
+    private static final long serialVersionUID = 2237559222503262653L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

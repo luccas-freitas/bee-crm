@@ -1,8 +1,8 @@
 package br.com.bee.collect.crmmanager.service.impl;
 
-import br.com.bee.collect.crmmanager.model.Product;
-import br.com.bee.collect.crmmanager.model.repository.ProductRepository;
-import br.com.bee.collect.crmmanager.service.ProductService;
+import br.com.bee.collect.crmmanager.model.Client;
+import br.com.bee.collect.crmmanager.model.repository.ClientRepository;
+import br.com.bee.collect.crmmanager.service.ClientService;
 import br.com.bee.collect.crmmanager.utils.paging.*;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
@@ -17,29 +17,29 @@ import java.util.stream.Collectors;
 
 @Slf4j
 @Service
-public class ProductServiceImpl implements ProductService {
-    private final ProductRepository repository;
-    private static final Comparator<Product> EMPTY_COMPARATOR = (e1, e2) -> 0;
+public class ClientServiceImpl implements ClientService {
+    private static final Comparator<Client> EMPTY_COMPARATOR = (e1, e2) -> 0;
+    private final ClientRepository repository;
 
-    public ProductServiceImpl(ProductRepository repository) {
+    public ClientServiceImpl(ClientRepository repository) {
         this.repository = repository;
     }
 
     @Override
-    public void save(Product product) {
-        product.setCreatedAt(LocalDateTime.now());
-        product.setUpdatedAt(LocalDateTime.now());
+    public void save(Client client) {
+        client.setCreatedAt(LocalDateTime.now());
+        client.setUpdatedAt(LocalDateTime.now());
 
-        repository.save(product);
+        repository.save(client);
     }
 
     @Override
-    public Page<Product> all(PagingRequest pagingRequest) {
+    public Page<Client> all(PagingRequest pagingRequest) {
         return getPage(repository.findAll(), pagingRequest);
     }
 
-    private Page<Product> getPage(List<Product> products, PagingRequest pagingRequest) {
-        List<Product> filtered = products.stream()
+    private Page<Client> getPage(List<Client> products, PagingRequest pagingRequest) {
+        List<Client> filtered = products.stream()
                 .sorted(sortEmployees(pagingRequest))
                 .filter(filterEmployees(pagingRequest))
                 .skip(pagingRequest.getStart())
@@ -50,7 +50,7 @@ public class ProductServiceImpl implements ProductService {
                 .filter(filterEmployees(pagingRequest))
                 .count();
 
-        Page<Product> page = new Page<>(filtered);
+        Page<Client> page = new Page<>(filtered);
         page.setRecordsFiltered((int) count);
         page.setRecordsTotal((int) count);
         page.setDraw(pagingRequest.getDraw());
@@ -58,27 +58,30 @@ public class ProductServiceImpl implements ProductService {
         return page;
     }
 
-    private Predicate<Product> filterEmployees(PagingRequest pagingRequest) {
+    private Predicate<Client> filterEmployees(PagingRequest pagingRequest) {
         if (pagingRequest.getSearch() == null || StringUtils.isEmpty(pagingRequest.getSearch()
                 .getValue())) {
-            return Product -> true;
+            return Client -> true;
         }
 
         String value = pagingRequest.getSearch()
                 .getValue();
 
-        return Product -> Product.getName()
+        return Client -> Client.getName()
                 .toLowerCase()
                 .contains(value)
-                || Product.getDescription()
+                || Client.getDocument()
                 .toLowerCase()
                 .contains(value)
-                || Product.getUnity().getDescricao()
+                || Client.getPhone()
+                .toLowerCase()
+                .contains(value)
+                || Client.getAddress()
                 .toLowerCase()
                 .contains(value);
     }
 
-    private Comparator<Product> sortEmployees(PagingRequest pagingRequest) {
+    private Comparator<Client> sortEmployees(PagingRequest pagingRequest) {
         if (pagingRequest.getOrder() == null) {
             return EMPTY_COMPARATOR;
         }
@@ -89,7 +92,7 @@ public class ProductServiceImpl implements ProductService {
             int columnIndex = order.getColumn();
             Column column = pagingRequest.getColumns().get(columnIndex);
 
-            Comparator<Product> comparator = ProductComparator.getComparator(column.getData(), order.getDir());
+            Comparator<Client> comparator = ClientComparator.getComparator(column.getData(), order.getDir());
 
             return Objects.requireNonNullElse(comparator, EMPTY_COMPARATOR);
 

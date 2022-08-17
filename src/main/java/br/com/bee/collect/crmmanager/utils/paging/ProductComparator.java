@@ -37,8 +37,8 @@ public class ProductComparator {
         map.put(new Key("unity", Direction.desc), Comparator.comparing(Product::getUnity)
                 .reversed());
 
-        map.put(new Key("updated_at", Direction.asc), Comparator.comparing(Product::getUpdatedAt));
-        map.put(new Key("updated_at", Direction.desc), Comparator.comparing(Product::getUpdatedAt)
+        map.put(new Key("updatedAt", Direction.asc), Comparator.comparing(Product::getUpdatedAt));
+        map.put(new Key("updatedAt", Direction.desc), Comparator.comparing(Product::getUpdatedAt)
                 .reversed());
     }
 
