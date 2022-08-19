@@ -8,22 +8,28 @@
 <th:block th:replace="fragments/navbar"></th:block>
 <div class="container">
     <div class="row">
-        <div class="col-lg-10 mt-5 mb-5">
-            <table id="example" class="table table-bordered table-responsive" style="width: 100%">
-                <thead>
-                <tr>
-                    <th>Produto</th>
-                    <th>Descrição</th>
-                    <th>Quantidade</th>
-                    <th>Unidade</th>
-                    <th>Última atualização</th>
-                </tr>
-                </thead>
-            </table>
+        <div class="col-md-12 mt-5 mb-5">
+            <div class="panel-body">
+                <table id="example" class="table table-bordered table-responsive" style="width: 100%">
+                    <thead>
+                    <tr>
+                        <th>Produto</th>
+                        <th>Descrição</th>
+                        <th>Quantidade</th>
+                        <th>Unidade</th>
+                        <th>Última atualização</th>
+                    </tr>
+                    </thead>
+                </table>
+            </div>
         </div>
     </div>
 </div>
-
+<div class="btn-group-fab">
+    <button type="button" class="btn btn-main btn-primary primary-color">
+        <i class="fa-solid fa-plus fa-lg"></i>
+    </button>
+</div>
 
 <th:block th:replace="fragments/footer"></th:block>
 <script th:src="@{assets/datatable/datatable.js}"></script>
@@ -33,6 +39,7 @@
         "ajax": {
             "url": "api/product",
             "type": "POST",
+            "hover": true,
             "dataType": "json",
             "contentType": "application/json",
             "data": function (d) {
@@ -40,32 +47,32 @@
             }
         },
         "language": {
-            "decimal":        "",
-            "emptyTable":     "Não há dados disponíveis",
-            "info":           "Exibindo _END_ de _TOTAL_ registros",
-            "infoEmpty":      "Exibindo 0 de 0 registros",
-            "infoFiltered":   "(filtrado de _MAX_ registros)",
-            "infoPostFix":    "",
-            "thousands":      ".",
-            "lengthMenu":     "Exibir _MENU_ registros",
+            "decimal": "",
+            "emptyTable": "Não há dados disponíveis",
+            "info": "Exibindo _END_ de _TOTAL_ registros",
+            "infoEmpty": "Exibindo 0 de 0 registros",
+            "infoFiltered": "(filtrado de _MAX_ registros)",
+            "infoPostFix": "",
+            "thousands": ".",
+            "lengthMenu": "Exibir _MENU_ registros",
             "loadingRecords": "Carregando...",
-            "processing":     "",
-            "search":         "Buscar:",
-            "zeroRecords":    "Nenhum registro encontrado",
+            "processing": "",
+            "search": "Buscar:",
+            "zeroRecords": "Nenhum registro encontrado",
             "paginate": {
-                "first":      "Primeira",
-                "last":       "Última",
-                "next":       "Próxima",
-                "previous":   "Anterior"
+                "first": "Primeira",
+                "last": "Última",
+                "next": "Próxima",
+                "previous": "Anterior"
             },
             "aria": {
-                "sortAscending":  ": ativar ordem crescente",
+                "sortAscending": ": ativar ordem crescente",
                 "sortDescending": ": ativar ordem decrescente"
             }
         },
         "columns": [
             {"data": "name", "width": "20%"},
-            {"data": "description","width": "20%"},
+            {"data": "description", "width": "20%"},
             {"data": "quantity", "width": "20%"},
             {"data": "unity", "width": "20%"},
             {"data": "updatedAt", "width": "20%"}

@@ -8,27 +8,28 @@
 <th:block th:replace="fragments/navbar"></th:block>
 <div class="container">
     <div class="row">
-        <div class="col-lg-10 mt-5 mb-5">
-            <table id="example" class="table table-bordered table-responsive" style="width: 100%">
-                <thead>
-                <tr>
-                    <th>Cliente</th>
-                    <th>CPF</th>
-                    <th>Endereço</th>
-                    <th>Telefone</th>
-                    <th>Última atualização</th>
-                </tr>
-                </thead>
-            </table>
+        <div class="col-md-12 mt-5 mb-5">
+            <div class="panel-body">
+                <table id="clients" class="table table-bordered table-responsive" style="width: 100%">
+                    <thead>
+                    <tr>
+                        <th>Cliente</th>
+                        <th>CPF</th>
+                        <th>Endereço</th>
+                        <th>Telefone</th>
+                        <th>Última atualização</th>
+                    </tr>
+                    </thead>
+                </table>
+            </div>
         </div>
     </div>
 </div>
 
-
 <th:block th:replace="fragments/footer"></th:block>
 <script th:src="@{assets/datatable/datatable.js}"></script>
 <script>
-    $('#example').DataTable({
+    $('#clients').DataTable({
         "serverSide": true,
         "ajax": {
             "url": "api/client",
